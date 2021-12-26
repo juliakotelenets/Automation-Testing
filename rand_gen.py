@@ -44,7 +44,7 @@ def read_questions(directory):
 
 def generate_questions(students, questions, *, numeach=2):
     sep = "=" * 30 + "\n"
-    files = dict()
+    files = {}
     for group, lst in students.items():
         for tr, orig in lst:
             files[f"{group}_{tr}.rst"] = f"{sep}{orig}\n{sep}\n"
@@ -58,8 +58,8 @@ def generate_questions(students, questions, *, numeach=2):
         print(f"{len(personal)} combinations")
         assert len(personal) >= len(files)
         random.shuffle(personal)
-        for f in files:
-            files[f] += "\n" + "\n".join(personal.pop(0)) + "\n"
+        for f, value in files.items():
+            value += "\n" + "\n".join(personal.pop(0)) + "\n"
 
     return files
 
